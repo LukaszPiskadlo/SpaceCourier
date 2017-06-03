@@ -14,6 +14,7 @@ public:
     void init(int argc, char** argv);
 
 private:
+    static const int updateTime;
     static const char* gameName;
     const int windowWidth;
     const int windowHeight;

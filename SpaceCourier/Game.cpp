@@ -2,6 +2,7 @@
 
 #include "Game.h"
 
+const int Game::updateTime = 17;
 const char* Game::gameName = "Space Courier";
 bool Game::keystate[255];
 
@@ -30,7 +31,7 @@ void Game::init(int argc, char** argv)
     glutKeyboardUpFunc(onKeyUp);
     glutPassiveMotionFunc(onMouseMove);
     glutMotionFunc(onMouseMove);
-    glutTimerFunc(17, onTimer, 0);
+    glutTimerFunc(updateTime, onTimer, 0);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -99,7 +100,7 @@ void Game::onMouseMove(int x, int y)
 
 void Game::onTimer(int id)
 {
-    glutTimerFunc(17, onTimer, 0);
+    glutTimerFunc(updateTime, onTimer, id);
 
     // todo game scene update
 }
