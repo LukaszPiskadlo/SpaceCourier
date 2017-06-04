@@ -16,8 +16,8 @@ Player::Player()
     velocityRX = 0.0f;
     velocityRY = 0.0f;
 
-    mouseX = 0.0f;
-    mouseY = 0.0f;
+    mouseX = 0;
+    mouseY = 0;
 }
 
 Player::Player(vec3 position, vec3 direction, float speed)
@@ -32,8 +32,8 @@ Player::Player(vec3 position, vec3 direction, float speed)
     velocityRX = 0.0f;
     velocityRY = 0.0f;
 
-    mouseX = 0.0f;
-    mouseY = 0.0f;
+    mouseX = 0;
+    mouseY = 0;
 }
 
 Player::~Player()
@@ -107,7 +107,7 @@ void Player::moveRight()
     velocityZ = speed;
 }
 
-void Player::moveCamera(float mouseX, float mouseY)
+void Player::moveCamera(int mouseX, int mouseY)
 {
     this->mouseX = mouseX;
     this->mouseY = mouseY;

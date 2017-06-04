@@ -17,7 +17,7 @@ public:
     void moveBackward();
     void moveLeft();
     void moveRight();
-    void moveCamera(float mouseX, float mouseY);
+    void moveCamera(int mouseX, int mouseY);
 
 private:
     static const float mouseSensitivity;
@@ -32,6 +32,6 @@ private:
     float velocityRX;
     float velocityRY;
 
-    float mouseX;
-    float mouseY;
+    int mouseX;
+    int mouseY;
 };

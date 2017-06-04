@@ -28,8 +28,10 @@ void Scene::update()
 
 void Scene::render()
 {
+    player->render();
+
     // light
-    float l0_amb[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    float l0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float l0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float l0_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float l0_pos[] = { -1.0f, 0.2f, 0.5f, 0.0f };
@@ -38,6 +40,6 @@ void Scene::render()
     glLightfv(GL_LIGHT0, GL_SPECULAR, l0_spe);
     glLightfv(GL_LIGHT0, GL_POSITION, l0_pos);
 
+    skybox->setPosition(player->getPosition());
     skybox->render();
-    player->render();
 }
