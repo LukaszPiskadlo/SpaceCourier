@@ -5,6 +5,7 @@
 const int Game::updateTime = 17;
 const char* Game::gameName = "Space Courier";
 bool Game::keystate[255];
+Scene* Game::scene = new Scene();
 
 Game::Game()
     : windowWidth(854), windowHeight(480), windowPosX(100), windowPosY(100)
@@ -15,9 +16,9 @@ Game::~Game()
 {
 }
 
-void Game::init(int argc, char** argv)
+void Game::init(int* argc, char** argv)
 {
-    glutInit(&argc, argv);
+    glutInit(argc, argv);
 
     glutInitWindowPosition(windowPosX, windowPosY);
     glutInitWindowSize(windowWidth, windowHeight);
@@ -47,7 +48,10 @@ void Game::init(int argc, char** argv)
     float gl_amb[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, gl_amb);
 
-    // todo initialize game scene and camera
+    glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
+    glutSetCursor(GLUT_CURSOR_NONE);
+
+    scene->init();
 
     glutMainLoop();
 }
@@ -58,7 +62,7 @@ void Game::onRender()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    // todo render here
+    scene->render();
 
     glutSwapBuffers();
     glFlush();
@@ -95,12 +99,30 @@ void Game::onKeyUp(unsigned char key, int x, int y)
 
 void Game::onMouseMove(int x, int y)
 {
-    // todo mosue movement
+    scene->player->moveCamera(x, y);
 }
 
 void Game::onTimer(int id)
 {
     glutTimerFunc(updateTime, onTimer, id);
 
-    // todo game scene update
+    if (keystate[FORWARD])
+    {
+        scene->player->moveForward();
+    }
+    if (keystate[BACKWARD])
+    {
+        scene->player->moveBackward();
+    }
+    if (keystate[LEFT])
+    {
+        scene->player->moveLeft();
+    }
+    if (keystate[RIGHT])
+    {
+        scene->player->moveRight();
+    }
+
+    scene->update();
 }
+

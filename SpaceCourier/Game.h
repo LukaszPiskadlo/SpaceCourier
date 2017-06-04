@@ -1,8 +1,14 @@
 #pragma once
 
+#include "Scene.h"
+
 enum Keys
 {
-    ESC = 27
+    ESC = 27,
+    FORWARD = 'w',
+    BACKWARD = 's',
+    LEFT = 'a',
+    RIGHT = 'd'
 };
 
 class Game
@@ -11,17 +17,19 @@ public:
     Game();
     ~Game();
 
-    void init(int argc, char** argv);
+    void init(int* argc, char** argv);
 
 private:
     static const int updateTime;
     static const char* gameName;
+    static bool keystate[255];
+
     const int windowWidth;
     const int windowHeight;
     const int windowPosX;
     const int windowPosY;
 
-    static bool keystate[255];
+    static Scene* scene;
 
     static void onRender();
     static void onReshape(int width, int height);
