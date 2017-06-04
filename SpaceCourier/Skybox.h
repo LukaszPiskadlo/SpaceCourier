@@ -17,6 +17,7 @@ public:
 
 private:
     static const int listCount;
+    static const float scale;
 
     GLuint listId[6];
     Texture* spaceBoxUp;

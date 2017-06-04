@@ -1,6 +1,7 @@
 #include "Skybox.h"
 
 const int Skybox::listCount = 6;
+const float Skybox::scale = 50.0f;
 
 Skybox::Skybox()
 {
@@ -145,7 +146,7 @@ void Skybox::render()
     glPushMatrix();
 
     glTranslatef(position.x, position.y, position.z);
-    glScalef(10.0f, 10.0f, 10.0f);
+    glScalef(scale, scale, scale);
 
     glEnable(GL_TEXTURE_2D);
     
