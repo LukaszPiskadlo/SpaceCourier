@@ -97,7 +97,7 @@ struct vec3 {
     }
 
     void rotate(vec3 r) {
-        r = r * (M_PI / 180.0);
+        r = r * (float)(M_PI / 180.0);
 
         float nx = x * cos(r.y) * cos(r.z) + y * (-cos(r.x) * sin(r.z) + sin(r.x)
             * sin(r.y) * cos(r.z)) + z * (sin(r.x) * sin(r.z) + cos(r.x) * sin(r.y) * cos(r.z));
