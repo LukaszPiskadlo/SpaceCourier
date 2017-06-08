@@ -5,19 +5,8 @@
 const float Player::mouseSensitivity = 0.15f;
 
 Player::Player()
+    : Player(vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, -1.0f), 3.0f)
 {
-    position.set(0.0f, 0.0f, 0.0f);
-    direction.set(0.0f, 0.0f, -1.0f);
-    camera.set(0.0f, 0.0f, 0.0f);
-
-    speed = 0.5f;
-    velocityX = 0.0f;
-    velocityZ = 0.0f;
-    velocityRX = 0.0f;
-    velocityRY = 0.0f;
-
-    mouseX = 0;
-    mouseY = 0;
 }
 
 Player::Player(vec3 position, vec3 direction, float speed)
@@ -26,7 +15,7 @@ Player::Player(vec3 position, vec3 direction, float speed)
     this->direction = direction;
     this->speed = speed;
 
-    camera.set(0.0f, 0.0f, 0.0f);
+    camera.set(0.0f, 5.0f, 30.0f);
     velocityX = 0.0f;
     velocityZ = 0.0f;
     velocityRX = 0.0f;
@@ -34,10 +23,15 @@ Player::Player(vec3 position, vec3 direction, float speed)
 
     mouseX = 0;
     mouseY = 0;
+
+    model = new Model("Resources\\space_frigate_6.obj");
+    texture = new Texture("Resources\\space_frigate_6_color.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
 }
 
 Player::~Player()
 {
+    delete texture;
+    delete model;
 }
 
 void Player::update()
@@ -80,6 +74,28 @@ void Player::render()
         position.x + camera.x + direction.x, position.y + camera.y + direction.y, position.z + camera.z + direction.z,
         0.0f, 1.0f, 0.0f
     );
+
+    glPushMatrix();
+
+    float mA[] = { 1.0f, 1.0f, 1.0f };
+    float mS[] = { 0.0f, 0.0f, 0.0f };
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mA);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mS);
+
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+    glScalef(0.5f, 0.5f, 0.5f);
+
+    glEnable(GL_TEXTURE_2D);
+
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+    glBindTexture(GL_TEXTURE_2D, texture->getId());
+    glCallList(model->getId());
+
+    glDisable(GL_TEXTURE_2D);
+
+    glPopMatrix();
 }
 
 vec3 Player::getPosition()

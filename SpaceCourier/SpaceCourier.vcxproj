@@ -147,6 +147,7 @@
     <ClCompile Include="..\Libs\lodepng\lodepng.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="..\Libs\lodepng\lodepng.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
@@ -170,6 +172,7 @@
     <Image Include="Resources\spaceboxLF.png" />
     <Image Include="Resources\spaceboxRT.png" />
     <Image Include="Resources\spaceboxUP.png" />
+    <Image Include="Resources\space_frigate_6_color.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

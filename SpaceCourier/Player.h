@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Vec3.h"
+#include "Texture.h"
+#include "Model.h"
 
 class Player
 {
@@ -21,6 +23,9 @@ public:
 
 private:
     static const float mouseSensitivity;
+
+    Model* model;
+    Texture* texture;
 
     vec3 position;
     vec3 direction;
