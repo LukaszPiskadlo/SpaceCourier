@@ -90,6 +90,10 @@ void Game::onKeyDown(unsigned char key, int x, int y)
     if (key == ESC) {
         glutLeaveMainLoop();
     }
+    if (key == FULLSCREEN)
+    {
+        glutFullScreenToggle();
+    }
 }
 
 void Game::onKeyUp(unsigned char key, int x, int y)

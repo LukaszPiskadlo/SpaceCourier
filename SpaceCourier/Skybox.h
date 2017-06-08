@@ -16,7 +16,6 @@ public:
     void render();
 
 private:
-    static const int listCount;
     static const float scale;
 
     GLuint listId[6];

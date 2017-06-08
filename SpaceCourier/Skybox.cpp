@@ -1,6 +1,5 @@
 #include "Skybox.h"
 
-const int Skybox::listCount = 6;
 const float Skybox::scale = 50.0f;
 
 Skybox::Skybox()
@@ -12,7 +11,7 @@ Skybox::Skybox()
     spaceBoxLeft = new Texture("Resources\\spaceboxLF.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
     spaceboxRight = new Texture("Resources\\spaceboxRT.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
 
-    listId[UP] = glGenLists(listCount);
+    listId[UP] = glGenLists(1);
 
     glNewList(listId[UP], GL_COMPILE);
     glBegin(GL_QUADS);
@@ -31,7 +30,7 @@ Skybox::Skybox()
     glEnd();
     glEndList();
 
-    listId[FRONT] = glGenLists(listCount);
+    listId[FRONT] = glGenLists(1);
 
     glNewList(listId[FRONT], GL_COMPILE);
     glBegin(GL_QUADS);
@@ -50,7 +49,7 @@ Skybox::Skybox()
     glEnd();
     glEndList();
 
-    listId[DOWN] = glGenLists(listCount);
+    listId[DOWN] = glGenLists(1);
 
     glNewList(listId[DOWN], GL_COMPILE);
     glBegin(GL_QUADS);
@@ -69,7 +68,7 @@ Skybox::Skybox()
     glEnd();
     glEndList();
 
-    listId[BACK] = glGenLists(listCount);
+    listId[BACK] = glGenLists(1);
 
     glNewList(listId[BACK], GL_COMPILE);
     glBegin(GL_QUADS);
@@ -88,7 +87,7 @@ Skybox::Skybox()
     glEnd();
     glEndList();
 
-    listId[LEFT] = glGenLists(listCount);
+    listId[LEFT] = glGenLists(1);
 
     glNewList(listId[LEFT], GL_COMPILE);
     glBegin(GL_QUADS);
@@ -107,7 +106,7 @@ Skybox::Skybox()
     glEnd();
     glEndList();
 
-    listId[RIGHT] = glGenLists(listCount);
+    listId[RIGHT] = glGenLists(1);
 
     glNewList(listId[RIGHT], GL_COMPILE);
     glBegin(GL_QUADS);

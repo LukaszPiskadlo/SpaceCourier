@@ -8,7 +8,8 @@ enum Keys
     FORWARD = 'w',
     BACKWARD = 's',
     LEFT = 'a',
-    RIGHT = 'd'
+    RIGHT = 'd',
+    FULLSCREEN = 'h'
 };
 
 class Game

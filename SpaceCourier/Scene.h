@@ -4,6 +4,8 @@
 #include "Object.h"
 #include "Player.h"
 
+#include <vector>
+
 class Scene
 {
 public:
@@ -18,4 +20,5 @@ public:
 
 private:
     Skybox* skybox;
+    std::vector<Object*> objects;
 };

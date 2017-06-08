@@ -22,8 +22,12 @@ void Scene::init()
 
 void Scene::update()
 {
-    skybox->update();
     player->update();
+
+    for each (Object* object in objects)
+    {
+        object->update();
+    }
 }
 
 void Scene::render()
@@ -42,4 +46,9 @@ void Scene::render()
 
     skybox->setPosition(player->getPosition());
     skybox->render();
+
+    for each (Object* object in objects)
+    {
+        object->render();
+    }
 }
