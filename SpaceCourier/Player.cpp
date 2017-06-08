@@ -15,7 +15,7 @@ Player::Player(vec3 position, vec3 direction, float speed)
     this->direction = direction;
     this->speed = speed;
 
-    camera.set(0.0f, 5.0f, 30.0f);
+    camera.set(0.0f, 5.0f, 5.0f);
     velocityX = 0.0f;
     velocityZ = 0.0f;
     velocityRX = 0.0f;

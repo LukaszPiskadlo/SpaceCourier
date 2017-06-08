@@ -4,9 +4,9 @@ const float Skybox::scale = 50.0f;
 
 Skybox::Skybox()
 {
-    spaceBoxUp = new Texture("Resources\\spaceboxUP.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
+    spaceBoxUp = new Texture("Resources\\spaceboxDN.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
     spaceBoxBack = new Texture("Resources\\spaceboxBK.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
-    spaceBoxDown = new Texture("Resources\\spaceboxDN.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
+    spaceBoxDown = new Texture("Resources\\spaceboxUP.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
     spaceBoxFront = new Texture("Resources\\spaceboxFT.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
     spaceBoxLeft = new Texture("Resources\\spaceboxLF.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
     spaceboxRight = new Texture("Resources\\spaceboxRT.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
