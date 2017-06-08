@@ -1,6 +1,6 @@
 #include "Skybox.h"
 
-const float Skybox::scale = 50.0f;
+const float Skybox::scale = 100.0f;
 
 Skybox::Skybox()
 {
