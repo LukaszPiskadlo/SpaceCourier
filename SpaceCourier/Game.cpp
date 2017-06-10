@@ -43,6 +43,7 @@ void Game::init(int* argc, char** argv)
     glEnable(GL_NORMALIZE);
 
     glEnable(GL_LIGHTING);
+    glShadeModel(GL_SMOOTH);
 
     // disable global light
     float gl_amb[] = { 0.0f, 0.0f, 0.0f, 1.0f };

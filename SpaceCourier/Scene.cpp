@@ -1,6 +1,7 @@
 #include <GL\freeglut.h>
 
 #include "Scene.h"
+#include "Asteroid.h"
 
 Scene::Scene()
 {
@@ -18,6 +19,8 @@ void Scene::init()
 
     skybox = new Skybox();
     player = new Player();
+
+    objects.push_back(new Asteroid(vec3(0.0f, 0.0f, -20.0f), vec3(0.2f, 0.2f, 0.2f)));
 }
 
 void Scene::update()
@@ -32,17 +35,17 @@ void Scene::update()
 
 void Scene::render()
 {
-    player->render();
-
     // light
-    float l0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    float l0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    float l0_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    float l0_pos[] = { -1.0f, 0.2f, 0.5f, 0.0f };
-    glLightfv(GL_LIGHT0, GL_AMBIENT, l0_amb);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, l0_dif);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, l0_spe);
-    glLightfv(GL_LIGHT0, GL_POSITION, l0_pos);
+    float ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    float diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float position[] = { -1.0f, -1.0f, 1.0f, 0.0f };
+    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, position);
+
+    player->render();
 
     skybox->setPosition(player->getPosition());
     skybox->render();

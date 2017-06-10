@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Libs\lodepng\lodepng.cpp" />
+    <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Libs\lodepng\lodepng.h" />
+    <ClInclude Include="Asteroid.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\asteroid_rock02.png" />
     <Image Include="Resources\spaceboxBK.png" />
     <Image Include="Resources\spaceboxDN.png" />
     <Image Include="Resources\spaceboxFT.png" />

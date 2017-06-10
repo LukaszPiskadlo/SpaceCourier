@@ -42,6 +42,9 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -71,6 +74,9 @@
     <ClInclude Include="Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\spaceboxBK.png">
@@ -92,6 +98,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\space_frigate_6_color.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\asteroid_rock02.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
