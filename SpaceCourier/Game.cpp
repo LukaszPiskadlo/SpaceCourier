@@ -8,7 +8,7 @@ bool Game::keystate[255];
 Scene* Game::scene = new Scene();
 
 Game::Game()
-    : windowWidth(854), windowHeight(480), windowPosX(100), windowPosY(100)
+    : windowWidth(854), windowHeight(480), windowPosX(-1), windowPosY(-1)
 {
 }
 
