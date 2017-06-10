@@ -12,8 +12,8 @@ public:
     Skybox();
     ~Skybox();
 
-    void update();
-    void render();
+    virtual void update() override;
+    virtual void render() override;
 
 private:
     static const float scale;

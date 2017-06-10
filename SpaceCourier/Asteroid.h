@@ -11,10 +11,10 @@ public:
     Asteroid(vec3 position, vec3 scale);
     ~Asteroid();
 
-    void update();
-    void render();
+    virtual void update() override;
+    virtual void render() override;
 
 private:
-    Model* model;
-    Texture* texture;
+    static Model* model;
+    static Texture* texture;
 };

@@ -75,7 +75,7 @@ void Game::onReshape(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, width, height);
-    gluPerspective(50.0f, (float)width / height, 0.01f, 200.0f);
+    gluPerspective(50.0f, (float)width / height, 0.01f, 520.0f);
 }
 
 void Game::onKeyPress(unsigned char key, int x, int y)

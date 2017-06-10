@@ -1,7 +1,7 @@
 #include <GL\freeglut.h>
 
 #include "Scene.h"
-#include "Asteroid.h"
+#include "AsteroidCluster.h"
 
 Scene::Scene()
 {
@@ -20,7 +20,7 @@ void Scene::init()
     skybox = new Skybox();
     player = new Player();
 
-    objects.push_back(new Asteroid(vec3(0.0f, 0.0f, -20.0f), vec3(0.2f, 0.2f, 0.2f)));
+    objects.push_back(new AsteroidCluster(vec3(0.0f, 0.0f, -20.0f), 5));
 }
 
 void Scene::update()

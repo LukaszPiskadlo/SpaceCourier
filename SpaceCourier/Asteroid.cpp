@@ -1,13 +1,23 @@
 #include "Asteroid.h"
 
+Model* Asteroid::model = nullptr;
+Texture* Asteroid::texture = nullptr;
+
 Asteroid::Asteroid(vec3 position, vec3 scale)
 {
     this->position = position;
     this->scale = scale;
     this->rotation = vec3(0.0f, 0.0f, 0.0f);
 
-    model = new Model("Resources\\asteroid.obj");
-    texture = new Texture("Resources\\asteroid_rock02.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
+    if (model == nullptr)
+    {
+        model = new Model("Resources\\asteroid.obj");
+    }
+
+    if (texture == nullptr)
+    {
+        texture = new Texture("Resources\\asteroid_rock02.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
+    }
 }
 
 Asteroid::~Asteroid()
