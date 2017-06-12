@@ -5,10 +5,10 @@
 const int Game::updateTime = 17;
 const char* Game::gameName = "Space Courier";
 bool Game::keystate[255];
-Scene* Game::scene = new Scene();
+Scene* Game::scene = nullptr;
 
 Game::Game()
-    : windowWidth(854), windowHeight(480), windowPosX(-1), windowPosY(-1)
+    : windowWidth(1280), windowHeight(720), windowPosX(-1), windowPosY(-1)
 {
 }
 
@@ -51,6 +51,11 @@ void Game::init(int* argc, char** argv)
 
     glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
     glutSetCursor(GLUT_CURSOR_NONE);
+
+    if (scene == nullptr)
+    {
+        scene = new Scene();
+    }
 
     scene->init();
 
