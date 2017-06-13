@@ -20,7 +20,7 @@ void Scene::init()
     skybox = new Skybox();
     player = new Player();
 
-    objects.push_back(new AsteroidCluster(vec3(0.0f, 0.0f, -20.0f), 5));
+    objects.push_back(new AsteroidCluster(vec3(-100.0f, -100.0f, -300.0f), 5));
 }
 
 void Scene::update()

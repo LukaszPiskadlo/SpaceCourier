@@ -43,8 +43,14 @@ void AsteroidCluster::update()
 
 void AsteroidCluster::render()
 {
+    glPushMatrix();
+
+    glTranslatef(position.x, position.y, position.z);
+
     for each (Asteroid* asteroid in asteroids)
     {
         asteroid->render();
     }
+
+    glPopMatrix();
 }
