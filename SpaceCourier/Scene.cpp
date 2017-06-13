@@ -21,6 +21,13 @@ void Scene::init()
     player = new Player();
 
     objects.push_back(new AsteroidCluster(vec3(-100.0f, -100.0f, -300.0f), 5));
+
+    glEnable(GL_FOG);
+    float fogColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+    glFogi(GL_FOG_MODE, GL_LINEAR);
+    glFogfv(GL_FOG_COLOR, fogColor);
+    glFogf(GL_FOG_START, 150.0f);
+    glFogf(GL_FOG_END, 250.0f);
 }
 
 void Scene::update()
@@ -47,8 +54,10 @@ void Scene::render()
 
     player->render();
 
+    glDisable(GL_FOG);
     skybox->setPosition(player->getPosition());
     skybox->render();
+    glEnable(GL_FOG);
 
     for each (Object* object in objects)
     {

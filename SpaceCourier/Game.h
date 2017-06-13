@@ -5,10 +5,12 @@
 enum Keys
 {
     ESC = 27,
-    FORWARD = 'w',
-    BACKWARD = 's',
+    MOVE = ' ',
+    STOP = 'f',
     LEFT = 'a',
     RIGHT = 'd',
+    UP = 'w',
+    DOWN = 's',
     FULLSCREEN = 'h'
 };
 

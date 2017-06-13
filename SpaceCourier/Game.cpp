@@ -8,7 +8,7 @@ bool Game::keystate[255];
 Scene* Game::scene = nullptr;
 
 Game::Game()
-    : windowWidth(1280), windowHeight(720), windowPosX(-1), windowPosY(-1)
+    : windowWidth(1280), windowHeight(720), windowPosX(100), windowPosY(50)
 {
 }
 
@@ -116,13 +116,9 @@ void Game::onTimer(int id)
 {
     glutTimerFunc(updateTime, onTimer, id);
 
-    if (keystate[FORWARD])
+    if (keystate[MOVE])
     {
         scene->player->moveForward();
-    }
-    if (keystate[BACKWARD])
-    {
-        scene->player->moveBackward();
     }
     if (keystate[LEFT])
     {
@@ -131,6 +127,14 @@ void Game::onTimer(int id)
     if (keystate[RIGHT])
     {
         scene->player->moveRight();
+    }
+    if (keystate[UP])
+    {
+        scene->player->moveUp();
+    }
+    if (keystate[DOWN])
+    {
+        scene->player->moveDown();
     }
 
     scene->update();

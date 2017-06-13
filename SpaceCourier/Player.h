@@ -16,9 +16,11 @@ public:
 
     vec3 getPosition();
     void moveForward();
-    void moveBackward();
+    void moveStop();
     void moveLeft();
     void moveRight();
+    void moveUp();
+    void moveDown();
     void moveCamera(int mouseX, int mouseY);
 
 private:
@@ -28,6 +30,7 @@ private:
     Texture* texture;
 
     vec3 position;
+    vec3 rotation;
     vec3 direction;
     vec3 camera;
 
@@ -36,6 +39,8 @@ private:
     float velocityZ;
     float velocityRX;
     float velocityRY;
+
+    bool isMoving;
 
     int mouseX;
     int mouseY;
