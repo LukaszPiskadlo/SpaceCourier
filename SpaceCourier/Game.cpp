@@ -15,6 +15,7 @@ Game::Game()
 
 Game::~Game()
 {
+    delete scene;
 }
 
 void Game::init(int* argc, char** argv)

@@ -1,6 +1,5 @@
 #include "AsteroidCluster.h"
-
-#include <random>
+#include "RandomNumber.h"
 
 AsteroidCluster::AsteroidCluster(vec3 position, int xDim, int yDim, int zDim)
 {
@@ -8,10 +7,8 @@ AsteroidCluster::AsteroidCluster(vec3 position, int xDim, int yDim, int zDim)
     this->rotation = vec3(0.0f, 0.0f, 0.0f);
     this->scale = vec3(1.0f, 1.0f, 1.0f);
 
-    std::random_device randomDevice;
-    std::mt19937 generator(randomDevice());
-    std::uniform_real_distribution<float> randomScale(30.0f, 40.0f);
-    std::uniform_real_distribution<float> randomPosition(40.0f, 55.0f);
+    RandomNumber<float>* randomScale = new RandomNumber<float>(30.0f, 45.0f);
+    RandomNumber<float>* randomPosition = new RandomNumber<float>(40.0f, 55.0f);
 
     for (int x = 0; x < xDim; x++)
     {
@@ -19,14 +16,17 @@ AsteroidCluster::AsteroidCluster(vec3 position, int xDim, int yDim, int zDim)
         {
             for (int z = 0; z < zDim; z++)
             {
-                float scaleFactor = randomScale(generator) / 100.0f;
+                float scaleFactor = randomScale->generate() / 100.0f;
                 vec3 scale = vec3(scaleFactor, scaleFactor, scaleFactor);
-                vec3 pos = vec3(x * randomPosition(generator), y * randomPosition(generator), z * randomPosition(generator));
+                vec3 pos = vec3(x * randomPosition->generate(), y * randomPosition->generate(), z * randomPosition->generate());
 
                 asteroids.push_back(new Asteroid(pos, scale));
             }
         }
     }
+
+    delete randomScale;
+    delete randomPosition;
 }
 
 AsteroidCluster::~AsteroidCluster()
