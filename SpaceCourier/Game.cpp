@@ -49,8 +49,10 @@ void Game::init(int* argc, char** argv)
     float gl_amb[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, gl_amb);
 
-    glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
+    //glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
     glutSetCursor(GLUT_CURSOR_NONE);
+
+    glutFullScreen();
 
     if (scene == nullptr)
     {
@@ -124,17 +126,33 @@ void Game::onTimer(int id)
     {
         scene->player->moveLeft();
     }
+    else
+    {
+        scene->player->moveLeftStop();
+    }
     if (keystate[RIGHT])
     {
         scene->player->moveRight();
+    }
+    else
+    {
+        scene->player->moveRightStop();
     }
     if (keystate[UP])
     {
         scene->player->moveUp();
     }
+    else
+    {
+        scene->player->moveUpStop();
+    }
     if (keystate[DOWN])
     {
         scene->player->moveDown();
+    }
+    else
+    {
+        scene->player->moveDownStop();
     }
 
     scene->update();

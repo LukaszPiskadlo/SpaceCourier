@@ -9,7 +9,7 @@ class AsteroidCluster :
     public Object
 {
 public:
-    AsteroidCluster(vec3 position, int size);
+    AsteroidCluster(vec3 position, int xDim, int yDim, int zDim);
     ~AsteroidCluster();
 
     virtual void update() override;

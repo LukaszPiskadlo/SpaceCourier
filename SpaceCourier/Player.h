@@ -18,14 +18,16 @@ public:
     void moveForward();
     void moveStop();
     void moveLeft();
+    void moveLeftStop();
     void moveRight();
+    void moveRightStop();
     void moveUp();
+    void moveUpStop();
     void moveDown();
+    void moveDownStop();
     void moveCamera(int mouseX, int mouseY);
 
 private:
-    static const float mouseSensitivity;
-
     Model* model;
     Texture* texture;
 
@@ -40,7 +42,14 @@ private:
     float velocityRX;
     float velocityRY;
 
-    bool isMoving;
+    float maxAngleX;
+    float maxAngleZ;
+
+    bool isMovingForward;
+    bool isMovingLeft;
+    bool isMovingRight;
+    bool isMovingUp;
+    bool isMovingDown;
 
     int mouseX;
     int mouseY;

@@ -20,14 +20,14 @@ void Scene::init()
     skybox = new Skybox();
     player = new Player();
 
-    objects.push_back(new AsteroidCluster(vec3(-100.0f, -100.0f, -300.0f), 5));
+    objects.push_back(new AsteroidCluster(vec3(-275.0f, -275.0f, -1200.0f), 10, 10, 20));
 
     glEnable(GL_FOG);
     float fogColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     glFogi(GL_FOG_MODE, GL_LINEAR);
     glFogfv(GL_FOG_COLOR, fogColor);
-    glFogf(GL_FOG_START, 150.0f);
-    glFogf(GL_FOG_END, 250.0f);
+    glFogf(GL_FOG_START, 200.0f);
+    glFogf(GL_FOG_END, 300.0f);
 }
 
 void Scene::update()

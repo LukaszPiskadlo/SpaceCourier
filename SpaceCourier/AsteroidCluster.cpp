@@ -2,7 +2,7 @@
 
 #include <random>
 
-AsteroidCluster::AsteroidCluster(vec3 position, int size)
+AsteroidCluster::AsteroidCluster(vec3 position, int xDim, int yDim, int zDim)
 {
     this->position = position;
     this->rotation = vec3(0.0f, 0.0f, 0.0f);
@@ -10,14 +10,14 @@ AsteroidCluster::AsteroidCluster(vec3 position, int size)
 
     std::random_device randomDevice;
     std::mt19937 generator(randomDevice());
-    std::uniform_real_distribution<float> randomScale(20.0f, 35.0f);
+    std::uniform_real_distribution<float> randomScale(30.0f, 40.0f);
     std::uniform_real_distribution<float> randomPosition(40.0f, 55.0f);
 
-    for (int x = 0; x < size; x++)
+    for (int x = 0; x < xDim; x++)
     {
-        for (int y = 0; y < size; y++)
+        for (int y = 0; y < yDim; y++)
         {
-            for (int z = 0; z < size; z++)
+            for (int z = 0; z < zDim; z++)
             {
                 float scaleFactor = randomScale(generator) / 100.0f;
                 vec3 scale = vec3(scaleFactor, scaleFactor, scaleFactor);

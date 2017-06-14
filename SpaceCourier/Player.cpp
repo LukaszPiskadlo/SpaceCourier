@@ -2,10 +2,8 @@
 
 #include "Player.h"
 
-const float Player::mouseSensitivity = 0.15f;
-
 Player::Player()
-    : Player(vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, -1.0f), 3.0f)
+    : Player(vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, -1.0f), 10.0f)
 {
 }
 
@@ -22,7 +20,14 @@ Player::Player(vec3 position, vec3 direction, float speed)
     velocityRX = 0.0f;
     velocityRY = 0.0f;
 
-    isMoving = false;
+    maxAngleX = 30.0f;
+    maxAngleZ = 20.0f;
+
+    isMovingForward = false;
+    isMovingLeft = false;
+    isMovingRight = false;
+    isMovingUp = false;
+    isMovingDown = false;
 
     mouseX = 0;
     mouseY = 0;
@@ -39,23 +44,25 @@ Player::~Player()
 
 void Player::update()
 {
-    /*velocityRY = -mouseSensitivity * (glutGet(GLUT_WINDOW_WIDTH) / 2 - mouseX);
-    velocityRX = mouseSensitivity * (glutGet(GLUT_WINDOW_HEIGHT) / 2 - mouseY);
-    glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);*/
-
     float t = acos(direction.y);
     float g = atan2(direction.z, direction.x);
-    /*t -= velocityRX * 0.03f;
-    g += velocityRY * 0.03f;*/
-    t += velocityRY * 0.06f;
-    g += velocityRX * 0.12f;
+    t += velocityRY * 0.06f / speed;
+    g += velocityRX * 0.12f / speed;
     direction.x = sin(t) * cos(g);
     direction.y = cos(t);
     //direction.z = sin(t) * sin(g);
 
-    float angleX = -30.0f / speed;
-    float angleZ = 20.0f / speed;
-    rotation = vec3(angleX * velocityRX, 0.0f, angleZ * velocityRY);
+    float angleX = -maxAngleX / speed;
+    float angleZ = maxAngleZ / speed;
+    angleX *= velocityRX;
+    angleZ *= velocityRY;
+
+    float twoAxis = 1.0f;
+    if ((angleX > 0.01f || angleX < -0.01f) && angleZ > 1.0f)
+    {
+        twoAxis *= -1.0f;
+    }
+    rotation = vec3(angleX * twoAxis, 0.0f, angleZ);
     vec3 per(-direction.z, direction.y, direction.x);
 
     vec3 nextPosition = position;
@@ -69,13 +76,19 @@ void Player::update()
 
     position = nextPosition;
 
-    if (!isMoving)
+    if (!isMovingForward)
     {
         velocityX /= 1.2f;
     }
-    velocityZ /= 1.2f;
-    velocityRX /= 1.2f;
-    velocityRY /= 1.2f;
+    if (!isMovingLeft && !isMovingRight)
+    {
+        velocityRX /= 1.2f;
+    }
+    if (!isMovingUp && !isMovingDown)
+    {
+        velocityRY /= 1.2f;
+    }
+    
     direction.x /= 1.2f;
     direction.y /= 1.2f;
 }
@@ -88,11 +101,13 @@ void Player::render()
         position.y + camera.y,
         position.z + camera.z,
         // center
-        position.x, 
-        position.y, 
+        position.x,
+        position.y,
         position.z,
         // normal
-        0.0f, 1.0f, 0.0f
+        0.0f,
+        1.0f,
+        0.0f
     );
 
     glPushMatrix();
@@ -128,32 +143,88 @@ vec3 Player::getPosition()
 void Player::moveForward()
 {
     velocityX = speed;
-    isMoving = true;
+    isMovingForward = true;
 }
 
 void Player::moveStop()
 {
-    isMoving = false;
+    isMovingForward = false;
 }
 
 void Player::moveLeft()
 {
-    velocityRX = -speed;
+    if (velocityRX == 0.0f)
+    {
+        velocityRX = -speed / 10.0f;
+    }
+    else if (velocityRX > -speed)
+    {
+        velocityRX--;
+    }
+
+    isMovingLeft = true;
+}
+
+void Player::moveLeftStop()
+{
+    isMovingLeft = false;
 }
 
 void Player::moveRight()
 {
-    velocityRX = speed;
+    if (velocityRX == 0.0f)
+    {
+        velocityRX = speed / 10.0f;
+    }
+    else if (velocityRX < speed)
+    {
+        velocityRX++;
+    }
+
+    isMovingRight = true;
+}
+
+void Player::moveRightStop()
+{
+    isMovingRight = false;
 }
 
 void Player::moveUp()
 {
-    velocityRY = -speed;
+    if (velocityRY == 0.0f)
+    {
+        velocityRY = -speed / 10.0f;
+    }
+    else if (velocityRY > -speed)
+    {
+        velocityRY--;
+    }
+
+    isMovingUp = true;
+}
+
+void Player::moveUpStop()
+{
+    isMovingUp = false;
 }
 
 void Player::moveDown()
 {
-    velocityRY = speed;
+    if (velocityRY == 0.0f)
+    {
+        velocityRY = speed / 10.0f;
+    }
+    else if (velocityRY < speed)
+    {
+        velocityRY++;
+    }
+
+    isMovingDown = true;
+}
+
+void Player::moveDownStop()
+{
+    isMovingDown = false;
 }
 
 void Player::moveCamera(int mouseX, int mouseY)
