@@ -2,18 +2,6 @@
 
 #include "Scene.h"
 
-enum Keys
-{
-    ESC = 27,
-    MOVE = ' ',
-    STOP = 'f',
-    LEFT = 'a',
-    RIGHT = 'd',
-    UP = 'w',
-    DOWN = 's',
-    FULLSCREEN = 'h'
-};
-
 class Game
 {
 public:

@@ -1,14 +1,15 @@
 #include <GL/freeglut.h>
 
 #include "Game.h"
+#include "Settings.h"
 
-const int Game::updateTime = 17;
-const char* Game::gameName = "Space Courier";
+const int Game::updateTime = GAME_UPDATE_TIME;
+const char* Game::gameName = GAME_NAME;
 bool Game::keystate[255];
 Scene* Game::scene = nullptr;
 
 Game::Game()
-    : windowWidth(1280), windowHeight(720), windowPosX(100), windowPosY(50)
+    : windowWidth(WINDOW_WIDTH), windowHeight(WINDOW_HEIGHT), windowPosX(WINDOW_POS_X), windowPosY(WINDOW_POS_Y)
 {
 }
 
@@ -49,7 +50,6 @@ void Game::init(int* argc, char** argv)
     float gl_amb[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, gl_amb);
 
-    //glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
     glutSetCursor(GLUT_CURSOR_NONE);
 
     glutFullScreen();
@@ -82,7 +82,7 @@ void Game::onReshape(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, width, height);
-    gluPerspective(50.0f, (float)width / height, 0.01f, 520.0f);
+    gluPerspective(50.0f, (float)width / height, 0.01f, MAX_VIEW_DISTANCE);
 }
 
 void Game::onKeyPress(unsigned char key, int x, int y)

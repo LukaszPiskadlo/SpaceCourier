@@ -1,9 +1,10 @@
 #include <GL\freeglut.h>
 
 #include "Player.h"
+#include "Settings.h"
 
 Player::Player()
-    : Player(vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, -1.0f), 10.0f)
+    : Player(vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, -1.0f), DEFAULT_SPEED)
 {
 }
 
@@ -14,7 +15,7 @@ Player::Player(vec3 position, vec3 direction, float speed)
     this->direction = direction;
     this->speed = speed;
 
-    camera.set(0.0f, 5.0f, 30.0f);
+    camera = CAMERA_OFFSET;
     velocityX = 0.0f;
     velocityZ = 0.0f;
     velocityRX = 0.0f;
