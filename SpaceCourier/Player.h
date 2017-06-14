@@ -3,18 +3,19 @@
 #include "Vec3.h"
 #include "Texture.h"
 #include "Model.h"
+#include "Object.h"
 
-class Player
+class Player : 
+    public Object
 {
 public:
     Player();
     Player(vec3 position, vec3 direction, float speed);
     ~Player();
 
-    void update();
-    void render();
+    virtual void update() override;
+    virtual void render() override;
 
-    vec3 getPosition();
     void moveForward();
     void moveStop();
     void moveLeft();
@@ -31,8 +32,6 @@ private:
     Model* model;
     Texture* texture;
 
-    vec3 position;
-    vec3 rotation;
     vec3 direction;
     vec3 camera;
 

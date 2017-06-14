@@ -34,12 +34,16 @@ Player::Player(vec3 position, vec3 direction, float speed)
 
     model = new Model("Resources\\space_frigate_6.obj");
     texture = new Texture("Resources\\space_frigate_6_color.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
+
+    glEnable(GL_LIGHT1);
 }
 
 Player::~Player()
 {
     delete texture;
     delete model;
+
+    glDisable(GL_LIGHT1);
 }
 
 void Player::update()
@@ -88,7 +92,7 @@ void Player::update()
     {
         velocityRY /= 1.2f;
     }
-    
+
     direction.x /= 1.2f;
     direction.y /= 1.2f;
 }
@@ -110,12 +114,28 @@ void Player::render()
         0.0f
     );
 
+    float lightAmbient[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float lightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float lightSpecular[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    float lightPosition[] = { position.x, position.y - 1.5f, position.z - 9.0f, 1.0f };
+    float lightDirection[] = { direction.x, direction.y, direction.z };
+    glLightfv(GL_LIGHT1, GL_AMBIENT, lightAmbient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightDiffuse);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, lightSpecular);
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPosition);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, lightDirection);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
+    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.005f);
+    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.004f);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.003f);
+    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 5.0f);
+
     glPushMatrix();
 
-    float mA[] = { 1.0f, 1.0f, 1.0f };
-    float mS[] = { 0.0f, 0.0f, 0.0f };
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mA);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mS);
+    float materialAmbDif[] = { 1.0f, 1.0f, 1.0f };
+    float materialSpecular[] = { 0.0f, 0.0f, 0.0f };
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, materialAmbDif);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, materialSpecular);
 
     glTranslatef(position.x, position.y, position.z);
     glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
@@ -126,18 +146,12 @@ void Player::render()
     glEnable(GL_TEXTURE_2D);
 
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
     glBindTexture(GL_TEXTURE_2D, texture->getId());
     glCallList(model->getId());
 
     glDisable(GL_TEXTURE_2D);
 
     glPopMatrix();
-}
-
-vec3 Player::getPosition()
-{
-    return position;
 }
 
 void Player::moveForward()
