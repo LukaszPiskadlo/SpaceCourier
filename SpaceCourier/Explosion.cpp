@@ -35,9 +35,9 @@ void Explosion::update()
 
 void Explosion::render()
 {
-    float ambient[] = { 1.0f, 0.5f, 0.0f, 1.0f };
-    float diffuse[] = { 1.0f, 0.5f, 0.0f, 1.0f };
-    float specular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+    float ambient[] = { 0.9f, 0.05f, 0.04f, 1.0f };
+    float diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float lightPos[] = { position.x, position.y, position.z };
     glLightfv(GL_LIGHT2, GL_AMBIENT, ambient);
     glLightfv(GL_LIGHT2, GL_DIFFUSE, diffuse);

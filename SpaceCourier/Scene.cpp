@@ -78,8 +78,7 @@ void Scene::update()
 
 void Scene::render()
 {
-    // light
-    float ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    float ambient[] = { 0.99f, 0.98f, 0.91f, 1.0f };
     float diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float position[] = { -1.0f, -1.0f, 1.0f, 0.0f };

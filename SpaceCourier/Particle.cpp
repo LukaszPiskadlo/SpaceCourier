@@ -35,11 +35,6 @@ void Particle::render()
 
     glPushMatrix();
 
-    float materialAmbDif[] = { 1.0f, 1.0f, 1.0f };
-    float materialSpecular[] = { 1.0f, 1.0f, 1.0f };
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, materialAmbDif);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, materialSpecular);
-
     glPointSize(size);
 
     glBegin(GL_POINTS);
