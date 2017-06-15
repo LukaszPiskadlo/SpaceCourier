@@ -20,6 +20,8 @@ AsteroidCluster::AsteroidCluster(vec3 position, int xDim, int yDim, int zDim)
                 vec3 scale = vec3(scaleFactor, scaleFactor, scaleFactor);
                 vec3 pos = vec3(x * randomPosition->generate(), y * randomPosition->generate(), z * randomPosition->generate());
 
+                pos = position + pos;
+
                 asteroids.push_back(new Asteroid(pos, scale));
             }
         }
@@ -45,12 +47,15 @@ void AsteroidCluster::render()
 {
     glPushMatrix();
 
-    glTranslatef(position.x, position.y, position.z);
-
     for each (Asteroid* asteroid in asteroids)
     {
         asteroid->render();
     }
 
     glPopMatrix();
+}
+
+std::vector<Asteroid*> AsteroidCluster::getAsteroids()
+{
+    return asteroids;
 }

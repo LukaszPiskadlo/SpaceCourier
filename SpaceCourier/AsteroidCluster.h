@@ -15,6 +15,8 @@ public:
     virtual void update() override;
     virtual void render() override;
 
+    std::vector<Asteroid*> getAsteroids();
+
 private:
     std::vector<Asteroid*> asteroids;
 };

@@ -33,8 +33,15 @@ Player::Player(vec3 position, vec3 direction, float speed)
     mouseX = 0;
     mouseY = 0;
 
+    isDead = false;
+
     model = new Model("Resources\\space_frigate_6.obj");
     texture = new Texture("Resources\\space_frigate_6_color.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
+
+    vec3 boxPosition1(position.x, position.y, position.z - 5.0f);
+    collisionBoxes.push_back(new CollisionBox(boxPosition1, vec3(2.5f, 2.5f, 3.5f)));
+    vec3 boxPosition2(position.x, position.y, position.z + 5.0f);
+    collisionBoxes.push_back(new CollisionBox(boxPosition2, vec3(8.0f, 2.0f, 2.0f)));
 
     glEnable(GL_LIGHT1);
 }
@@ -49,6 +56,11 @@ Player::~Player()
 
 void Player::update()
 {
+    if (isDead)
+    {
+        return;
+    }
+
     float t = acos(direction.y);
     float g = atan2(direction.z, direction.x);
     t += velocityRY * 0.06f / speed;
@@ -96,6 +108,11 @@ void Player::update()
 
     direction.x /= 1.2f;
     direction.y /= 1.2f;
+
+    vec3 boxPosition1(position.x, position.y, position.z - 5.0f);
+    collisionBoxes[0]->setPosition(boxPosition1);
+    vec3 boxPosition2(position.x, position.y, position.z + 5.0f);
+    collisionBoxes[1]->setPosition(boxPosition2);
 }
 
 void Player::render()
@@ -114,6 +131,11 @@ void Player::render()
         1.0f,
         0.0f
     );
+
+    if (isDead)
+    {
+        return;
+    }
 
     float lightAmbient[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float lightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -153,6 +175,48 @@ void Player::render()
     glDisable(GL_TEXTURE_2D);
 
     glPopMatrix();
+
+
+    // (debug) show cillision mesh
+    //glPushMatrix();
+
+    //vec3 cs = collisionBoxes[0]->getHalfSize();
+    //vec3 cpos = collisionBoxes[0]->getPosition();
+    //glPointSize(10.0f);
+
+    ////glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+    //glBegin(GL_POINTS);
+    //glVertex3f(cpos.x + cs.x, cpos.y + cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y + cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y - cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x + cs.x, cpos.y - cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x + cs.x, cpos.y + cs.y, cpos.z - cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y + cs.y, cpos.z - cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y - cs.y, cpos.z - cs.z);
+    //glVertex3f(cpos.x + cs.x, cpos.y - cs.y, cpos.z - cs.z);
+    //glEnd();
+
+    //glPopMatrix();
+
+    //glPushMatrix();
+
+    //cs = collisionBoxes[1]->getHalfSize();
+    //cpos = collisionBoxes[1]->getPosition();
+    //glPointSize(10.0f);
+
+    ////glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+    //glBegin(GL_POINTS);
+    //glVertex3f(cpos.x + cs.x, cpos.y + cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y + cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y - cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x + cs.x, cpos.y - cs.y, cpos.z + cs.z);
+    //glVertex3f(cpos.x + cs.x, cpos.y + cs.y, cpos.z - cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y + cs.y, cpos.z - cs.z);
+    //glVertex3f(cpos.x - cs.x, cpos.y - cs.y, cpos.z - cs.z);
+    //glVertex3f(cpos.x + cs.x, cpos.y - cs.y, cpos.z - cs.z);
+    //glEnd();
+
+    //glPopMatrix();
 }
 
 void Player::moveForward()
@@ -246,4 +310,14 @@ void Player::moveCamera(int mouseX, int mouseY)
 {
     this->mouseX = mouseX;
     this->mouseY = mouseY;
+}
+
+void Player::setDead(bool isDead)
+{
+    this->isDead = isDead;
+}
+
+std::vector<CollisionBox*> Player::getCollisionBoxes()
+{
+    return collisionBoxes;
 }

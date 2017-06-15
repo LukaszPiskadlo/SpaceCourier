@@ -18,12 +18,16 @@ Asteroid::Asteroid(vec3 position, vec3 scale)
     {
         texture = new Texture("Resources\\asteroid_rock02.png", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
     }
+
+    vec3 collisionSpherePos(position.x, position.y + 4.0f, position.z);
+    collisionSphere = new CollisionSphere(50.0f * scale.x, collisionSpherePos);
 }
 
 Asteroid::~Asteroid()
 {
     delete model;
     delete texture;
+    delete collisionSphere;
 }
 
 void Asteroid::update()
@@ -34,10 +38,10 @@ void Asteroid::render()
 {
     glPushMatrix();
 
-    float mA[] = { 1.0f, 1.0f, 1.0f };
-    float mS[] = { 0.0f, 0.0f, 0.0f };
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mA);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mS);
+    float materialAmbDiff[] = { 1.0f, 1.0f, 1.0f };
+    float materialSpecular[] = { 0.0f, 0.0f, 0.0f };
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, materialAmbDiff);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, materialSpecular);
 
     glTranslatef(position.x, position.y, position.z);
     glScalef(scale.x, scale.y, scale.z);
@@ -52,4 +56,18 @@ void Asteroid::render()
     glDisable(GL_TEXTURE_2D);
 
     glPopMatrix();
+
+    // (debug) show collisions mesh
+    /*glPushMatrix();
+
+    vec3 cpos = collisionSphere->getPosition();
+    glTranslatef(cpos.x, cpos.y, cpos.z);
+    glutWireSphere(collisionSphere->getRadius(), 8, 8);
+
+    glPopMatrix();*/
+}
+
+CollisionSphere* Asteroid::getCollisionSphere()
+{
+    return collisionSphere;
 }

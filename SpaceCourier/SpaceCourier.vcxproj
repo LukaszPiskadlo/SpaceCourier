@@ -147,6 +147,9 @@
     <ClCompile Include="..\Libs\lodepng\lodepng.cpp" />
     <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="AsteroidCluster.cpp" />
+    <ClCompile Include="CollisionBox.cpp" />
+    <ClCompile Include="CollisionDetector.cpp" />
+    <ClCompile Include="CollisionSphere.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -161,6 +164,9 @@
     <ClInclude Include="..\Libs\lodepng\lodepng.h" />
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="AsteroidCluster.h" />
+    <ClInclude Include="CollisionBox.h" />
+    <ClInclude Include="CollisionDetector.h" />
+    <ClInclude Include="CollisionSphere.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />

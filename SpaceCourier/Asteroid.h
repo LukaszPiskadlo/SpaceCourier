@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Model.h"
 #include "Texture.h"
+#include "CollisionSphere.h"
 
 class Asteroid :
     public Object
@@ -14,7 +15,11 @@ public:
     virtual void update() override;
     virtual void render() override;
 
+    CollisionSphere* getCollisionSphere();
+
 private:
     static Model* model;
     static Texture* texture;
+
+    CollisionSphere* collisionSphere;
 };

@@ -2,6 +2,8 @@
 
 #include "Scene.h"
 #include "AsteroidCluster.h"
+#include "Settings.h"
+#include "CollisionDetector.h"
 
 Scene::Scene()
 {
@@ -36,7 +38,30 @@ void Scene::update()
 
     for each (Object* object in objects)
     {
-        object->update();
+        AsteroidCluster* asteroidCluster = dynamic_cast<AsteroidCluster*> (object);
+        if (asteroidCluster)
+        {
+            for each (Asteroid* asteroid in asteroidCluster->getAsteroids())
+            {
+                vec3 distance = player->getPosition() - asteroid->getPosition();
+                if (distance.length() < 40.0f)
+                {
+                    for each (CollisionBox* box in player->getCollisionBoxes())
+                    {
+                        bool collide = CollisionDetector::checkCollision(box, asteroid->getCollisionSphere());
+
+                        if (collide)
+                        {
+                            player->setDead(true);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            object->update();
+        }
     }
 }
 

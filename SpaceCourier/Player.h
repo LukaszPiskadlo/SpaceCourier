@@ -4,8 +4,11 @@
 #include "Texture.h"
 #include "Model.h"
 #include "Object.h"
+#include "CollisionBox.h"
 
-class Player : 
+#include <vector>
+
+class Player :
     public Object
 {
 public:
@@ -27,10 +30,15 @@ public:
     void moveDown();
     void moveDownStop();
     void moveCamera(int mouseX, int mouseY);
+    
+    void setDead(bool isDead);
+
+    std::vector<CollisionBox*> getCollisionBoxes();
 
 private:
     Model* model;
     Texture* texture;
+    std::vector<CollisionBox*> collisionBoxes;
 
     vec3 direction;
     vec3 camera;
@@ -52,4 +60,6 @@ private:
 
     int mouseX;
     int mouseY;
+
+    bool isDead;
 };
