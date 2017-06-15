@@ -16,10 +16,12 @@ public:
     virtual void render() override;
 
     CollisionSphere* getCollisionSphere();
+    void setVisibility(bool isVisible);
 
 private:
     static Model* model;
     static Texture* texture;
 
     CollisionSphere* collisionSphere;
+    bool isVisible;
 };

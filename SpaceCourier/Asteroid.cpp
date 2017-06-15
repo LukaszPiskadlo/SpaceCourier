@@ -9,6 +9,8 @@ Asteroid::Asteroid(vec3 position, vec3 scale)
     this->scale = scale;
     this->rotation = vec3(0.0f, 0.0f, 0.0f);
 
+    isVisible = true;
+
     if (model == nullptr)
     {
         model = new Model("Resources\\asteroid.obj");
@@ -36,6 +38,11 @@ void Asteroid::update()
 
 void Asteroid::render()
 {
+    if (!isVisible)
+    {
+        return;
+    }
+
     glPushMatrix();
 
     float materialAmbDiff[] = { 1.0f, 1.0f, 1.0f };
@@ -70,4 +77,8 @@ void Asteroid::render()
 CollisionSphere* Asteroid::getCollisionSphere()
 {
     return collisionSphere;
+}
+
+void Asteroid::setVisibility(bool isVisible)
+{
 }

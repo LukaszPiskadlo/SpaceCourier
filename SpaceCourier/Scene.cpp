@@ -56,6 +56,15 @@ void Scene::update()
                         }
                     }
                 }
+
+                if (distance.length() > 200.0f)
+                {
+                    asteroid->setVisibility(false);
+                }
+                else
+                {
+                    asteroid->setVisibility(true);
+                }
             }
         }
         else
