@@ -150,10 +150,12 @@
     <ClCompile Include="CollisionBox.cpp" />
     <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="CollisionSphere.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Settings.cpp" />
@@ -167,9 +169,11 @@
     <ClInclude Include="CollisionBox.h" />
     <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="CollisionSphere.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomNumber.h" />
     <ClInclude Include="Scene.h" />

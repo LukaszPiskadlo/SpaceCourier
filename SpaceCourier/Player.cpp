@@ -183,7 +183,7 @@ void Player::render()
     glPopMatrix();
 
 
-    // (debug) show cillision mesh
+    // (debug) show collision points
     //glPushMatrix();
 
     //vec3 cs = collisionBoxes[0]->getHalfSize();
@@ -358,6 +358,11 @@ void Player::setLimits(float xMin, float xMax, float yMin, float yMax)
     this->xMax = xMax;
     this->yMin = yMin;
     this->yMax = yMax;
+}
+
+bool Player::isAlive()
+{
+    return !isDead;
 }
 
 std::vector<CollisionBox*> Player::getCollisionBoxes()

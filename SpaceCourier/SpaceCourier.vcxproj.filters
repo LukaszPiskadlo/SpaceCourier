@@ -84,6 +84,12 @@
     <ClCompile Include="CollisionDetector.cpp">
       <Filter>Source Files\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -133,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="CollisionDetector.h">
       <Filter>Header Files\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

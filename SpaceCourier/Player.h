@@ -34,6 +34,8 @@ public:
     void setDead(bool isDead);
     void setLimits(float xMin, float xMax, float yMin, float yMax);
 
+    bool isAlive();
+
     std::vector<CollisionBox*> getCollisionBoxes();
 
 private:

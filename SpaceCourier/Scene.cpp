@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Settings.h"
 #include "CollisionDetector.h"
+#include "Explosion.h"
 
 Scene::Scene()
 {
@@ -51,9 +52,10 @@ void Scene::update()
             {
                 bool collide = CollisionDetector::checkCollision(box, asteroid->getCollisionSphere());
 
-                if (collide)
+                if (collide && player->isAlive())
                 {
                     player->setDead(true);
+                    objects.push_back(new Explosion(player->getPosition()));
                 }
             }
         }
