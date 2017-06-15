@@ -172,6 +172,7 @@ void Player::render()
     glBindTexture(GL_TEXTURE_2D, texture->getId());
     glCallList(model->getId());
 
+    glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
 
     glPopMatrix();
@@ -315,6 +316,11 @@ void Player::moveCamera(int mouseX, int mouseY)
 void Player::setDead(bool isDead)
 {
     this->isDead = isDead;
+
+    if (isDead)
+    {
+        glDisable(GL_LIGHT1);
+    }
 }
 
 std::vector<CollisionBox*> Player::getCollisionBoxes()

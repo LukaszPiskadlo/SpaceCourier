@@ -60,6 +60,7 @@ void Asteroid::render()
     glBindTexture(GL_TEXTURE_2D, texture->getId());
     glCallList(model->getId());
 
+    glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
 
     glPopMatrix();

@@ -82,7 +82,7 @@
       <Filter>Source Files\Collision</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetector.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +132,7 @@
       <Filter>Header Files\Collision</Filter>
     </ClInclude>
     <ClInclude Include="CollisionDetector.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
