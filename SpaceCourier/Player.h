@@ -32,6 +32,7 @@ public:
     void moveCamera(int mouseX, int mouseY);
     
     void setDead(bool isDead);
+    void setLimits(float xMin, float xMax, float yMin, float yMax);
 
     std::vector<CollisionBox*> getCollisionBoxes();
 
@@ -51,6 +52,11 @@ private:
 
     float maxAngleX;
     float maxAngleZ;
+
+    float xMin;
+    float xMax;
+    float yMin;
+    float yMax;
 
     bool isMovingForward;
     bool isMovingLeft;

@@ -7,6 +7,8 @@ AsteroidCluster::AsteroidCluster(vec3 position, int xDim, int yDim, int zDim)
     this->rotation = vec3(0.0f, 0.0f, 0.0f);
     this->scale = vec3(1.0f, 1.0f, 1.0f);
 
+    edges = std::vector<vec3>(4);
+
     RandomNumber<float>* randomScale = new RandomNumber<float>(30.0f, 45.0f);
     RandomNumber<float>* randomPosition = new RandomNumber<float>(40.0f, 55.0f);
 
@@ -23,6 +25,23 @@ AsteroidCluster::AsteroidCluster(vec3 position, int xDim, int yDim, int zDim)
                 pos = position + pos;
 
                 asteroids.push_back(new Asteroid(pos, scale));
+
+                if (x == 0 && y == 0 && z == 0)
+                {
+                    edges[0] = pos;
+                }
+                else if (x == xDim - 1 && y == 0 && z == 0)
+                {
+                    edges[1] = pos;
+                }
+                else if (x == 0 && y == yDim - 1 && z == 0)
+                {
+                    edges[2] = pos;
+                }
+                else if (x == 0 && y == 0 && z == zDim - 1)
+                {
+                    edges[3] = pos;
+                }
             }
         }
     }
@@ -58,4 +77,9 @@ void AsteroidCluster::render()
 std::vector<Asteroid*> AsteroidCluster::getAsteroids()
 {
     return asteroids;
+}
+
+std::vector<vec3> AsteroidCluster::getEdges()
+{
+    return edges;
 }

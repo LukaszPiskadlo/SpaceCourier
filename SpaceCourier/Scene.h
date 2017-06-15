@@ -3,6 +3,7 @@
 #include "Skybox.h"
 #include "Object.h"
 #include "Player.h"
+#include "AsteroidCluster.h"
 
 #include <vector>
 
@@ -20,5 +21,6 @@ public:
 
 private:
     Skybox* skybox;
+    AsteroidCluster* asteroidCluster;
     std::vector<Object*> objects;
 };

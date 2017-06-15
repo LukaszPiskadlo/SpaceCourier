@@ -33,6 +33,11 @@ Player::Player(vec3 position, vec3 direction, float speed)
     mouseX = 0;
     mouseY = 0;
 
+    xMin = 0;
+    xMax = 0;
+    yMin = 0;
+    yMax = 0;
+
     isDead = false;
 
     model = new Model("Resources\\space_frigate_6.obj");
@@ -233,6 +238,12 @@ void Player::moveStop()
 
 void Player::moveLeft()
 {
+    if (xMin != 0 && position.x < xMin)
+    {
+        isMovingLeft = false;
+        return;
+    }
+
     if (velocityRX == 0.0f)
     {
         velocityRX = -speed / 10.0f;
@@ -252,6 +263,12 @@ void Player::moveLeftStop()
 
 void Player::moveRight()
 {
+    if (xMax != 0 && position.x > xMax)
+    {
+        isMovingRight = false;
+        return;
+    }
+
     if (velocityRX == 0.0f)
     {
         velocityRX = speed / 10.0f;
@@ -271,6 +288,12 @@ void Player::moveRightStop()
 
 void Player::moveUp()
 {
+    if (yMax != 0 && position.y > yMax)
+    {
+        isMovingUp = false;
+        return;
+    }
+
     if (velocityRY == 0.0f)
     {
         velocityRY = -speed / 10.0f;
@@ -290,6 +313,12 @@ void Player::moveUpStop()
 
 void Player::moveDown()
 {
+    if (yMin != 0 && position.y < yMin)
+    {
+        isMovingDown = false;
+        return;
+    }
+
     if (velocityRY == 0.0f)
     {
         velocityRY = speed / 10.0f;
@@ -321,6 +350,14 @@ void Player::setDead(bool isDead)
     {
         glDisable(GL_LIGHT1);
     }
+}
+
+void Player::setLimits(float xMin, float xMax, float yMin, float yMax)
+{
+    this->xMin = xMin;
+    this->xMax = xMax;
+    this->yMin = yMin;
+    this->yMax = yMax;
 }
 
 std::vector<CollisionBox*> Player::getCollisionBoxes()
