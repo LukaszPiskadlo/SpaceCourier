@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Scene.h"
+#include "Menu.h"
 
 class Game
 {
@@ -21,6 +22,7 @@ private:
     const int windowPosY;
 
     static Scene* scene;
+    static Menu* menu;
 
     static void onRender();
     static void onReshape(int width, int height);

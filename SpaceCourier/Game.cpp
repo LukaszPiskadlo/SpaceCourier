@@ -7,6 +7,7 @@ const int Game::updateTime = GAME_UPDATE_TIME;
 const char* Game::gameName = GAME_NAME;
 bool Game::keystate[255];
 Scene* Game::scene = nullptr;
+Menu* Game::menu = nullptr;
 
 Game::Game()
     : windowWidth(WINDOW_WIDTH), windowHeight(WINDOW_HEIGHT), windowPosX(WINDOW_POS_X), windowPosY(WINDOW_POS_Y)
@@ -16,6 +17,7 @@ Game::Game()
 Game::~Game()
 {
     delete scene;
+    delete menu;
 }
 
 void Game::init(int* argc, char** argv)
@@ -59,6 +61,10 @@ void Game::init(int* argc, char** argv)
     {
         scene = new Scene();
     }
+    if (menu == nullptr)
+    {
+        menu = new Menu();
+    }
 
     scene->init();
 
@@ -72,6 +78,7 @@ void Game::onRender()
     glLoadIdentity();
 
     scene->render();
+    //menu->startGame();
 
     glutSwapBuffers();
     glFlush();
@@ -96,12 +103,29 @@ void Game::onKeyPress(unsigned char key, int x, int y)
 
 void Game::onKeyDown(unsigned char key, int x, int y)
 {
-    if (key == ESC) {
+    if (key == ESC) 
+    {
         glutLeaveMainLoop();
     }
     if (key == FULLSCREEN)
     {
         glutFullScreenToggle();
+    }
+    if (key == ONE)
+    {
+        scene->nextMission(NORMAL);
+    }
+    if (key == TWO)
+    {
+        scene->nextMission(LONG_NORMAL);
+    }
+    if (key == THREE)
+    {
+        scene->nextMission(FAST);
+    }
+    if (key == FOUR)
+    {
+        scene->nextMission(LONG_FAST);
     }
 }
 

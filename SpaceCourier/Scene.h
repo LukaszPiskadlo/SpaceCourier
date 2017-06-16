@@ -19,6 +19,8 @@ public:
     void update();
     void render();
 
+    void nextMission(int mission);
+
 private:
     Skybox* skybox;
     AsteroidCluster* asteroidCluster;

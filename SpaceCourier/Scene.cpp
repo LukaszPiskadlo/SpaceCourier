@@ -24,7 +24,7 @@ void Scene::init()
     player = new Player();
 
     asteroidCluster = new AsteroidCluster(vec3(-275.0f, -275.0f, -1200.0f), 10, 10, 20);
-    
+
     float xMin = asteroidCluster->getEdges().at(0).x;
     float xMax = asteroidCluster->getEdges().at(1).x;
     float yMin = asteroidCluster->getEdges().at(0).y;
@@ -60,7 +60,7 @@ void Scene::update()
             }
         }
 
-        if (distance.length() > 200.0f)
+        if (distance.length() > 200.0f || asteroid->getPosition().z > player->getPosition().z)
         {
             asteroid->setVisibility(false);
         }
@@ -100,4 +100,43 @@ void Scene::render()
     {
         object->render();
     }
+}
+
+void Scene::nextMission(int mission)
+{
+    float zMax = asteroidCluster->getEdges().at(3).z;
+    if (player->getPosition().z > zMax)
+    {
+        return;
+    }
+
+    player->moveStop();
+
+    switch (mission)
+    {
+    case NORMAL:
+        asteroidCluster = new AsteroidCluster(vec3(-275.0f, -275.0f, -1200.0f), 10, 10, 20);
+        break;
+    case LONG_NORMAL:
+        asteroidCluster = new AsteroidCluster(vec3(-160.0f, -160.0f, -1800.0f), 7, 7, 30);
+        break;
+    case FAST:
+        asteroidCluster = new AsteroidCluster(vec3(-275.0f, -275.0f, -1200.0f), 10, 10, 20);
+        player->setSpeed(DEFAULT_SPEED + 10.0f);
+        break;
+    case LONG_FAST:
+        asteroidCluster = new AsteroidCluster(vec3(-160.0f, -160.0f, -1800.0f), 7, 7, 30);
+        player->setSpeed(DEFAULT_SPEED + 10.0f);
+        break;
+    default:
+        break;
+    }
+
+    player->setPosition(vec3(0.0f, 0.0f, 0.0f));
+
+    float xMin = asteroidCluster->getEdges().at(0).x;
+    float xMax = asteroidCluster->getEdges().at(1).x;
+    float yMin = asteroidCluster->getEdges().at(0).y;
+    float yMax = asteroidCluster->getEdges().at(2).y;
+    player->setLimits(xMin, xMax, yMin, yMax);
 }

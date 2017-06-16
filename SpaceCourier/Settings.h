@@ -11,7 +11,11 @@ enum Keys
     RIGHT = 'd',
     UP = 'w',
     DOWN = 's',
-    FULLSCREEN = 'h'
+    FULLSCREEN = 'h',
+    ONE = '1',
+    TWO = '2',
+    THREE = '3',
+    FOUR = '4'
 };
 
 enum GameWindow
@@ -32,3 +36,11 @@ extern const float SKYBOX_SCALE;
 // player
 extern const float DEFAULT_SPEED;
 extern const vec3 CAMERA_OFFSET;
+
+enum MissionDifficulty
+{
+    NORMAL,
+    LONG_NORMAL,
+    FAST,
+    LONG_FAST
+};

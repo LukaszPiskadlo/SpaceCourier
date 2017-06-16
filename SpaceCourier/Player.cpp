@@ -341,6 +341,11 @@ void Player::moveCamera(int mouseX, int mouseY)
     this->mouseY = mouseY;
 }
 
+void Player::setSpeed(float speed)
+{
+    this->speed = speed;
+}
+
 void Player::setDead(bool isDead)
 {
     this->isDead = isDead;

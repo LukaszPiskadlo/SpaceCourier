@@ -31,6 +31,7 @@ public:
     void moveDownStop();
     void moveCamera(int mouseX, int mouseY);
     
+    void setSpeed(float speed);
     void setDead(bool isDead);
     void setLimits(float xMin, float xMax, float yMin, float yMax);
 
