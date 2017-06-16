@@ -153,9 +153,9 @@ void Player::render()
     glLightfv(GL_LIGHT1, GL_POSITION, lightPosition);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, lightDirection);
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
-    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.005f);
-    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.004f);
-    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.003f);
+    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.05f);
+    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.04f);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.03f);
     glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 5.0f);
 
     glPushMatrix();
